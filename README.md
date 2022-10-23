@@ -1,33 +1,10 @@
-# Example app with mantine
+# WetPet
 
-This example features how you use [mantine](https://github.com/mantine/mantine), a React component library.
+## WetPet allows you to register pets in various locations, and check up on their needs, relative to the weather.
 
-## Preview
+The app can be found at https://wet-pet-ui.fly.dev
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+Backend repo is at https://github.com/bwong365/WetPetApi
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-mantine)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-mantine)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-mantine&project-name=with-mantine&repository-name=with-mantine)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-mantine with-mantine-app
-```
-
-```bash
-yarn create next-app --example with-mantine with-mantine-app
-```
-
-```bash
-pnpm create next-app --example with-mantine with-mantine-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+- WetPet is the front end client that consumes WetPetAPI
+- You'll be able to tell that I am not a designer 🙃.
