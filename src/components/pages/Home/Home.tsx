@@ -46,8 +46,8 @@ export const Home = () => {
             <Center>
               <motion.div
                 animate={{ opacity: 1, x: 0 }}
-                initial={{ opacity: 0, x: '-100vw' }}
-                transition={{ duration: 1, ease: 'easeOut' }}
+                initial={{ opacity: 0, x: '-250' }}
+                transition={{ duration: 1, ease: 'easeInOut', opacity: { duration: 1.5, ease: 'easeIn' } }}
               >
                 <Image alt="A dog with an umbrella" height="600" priority src="/assets/umbrella-dog.jpg" width="670" />
               </motion.div>
