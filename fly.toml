@@ -1,0 +1,43 @@
+# fly.toml file generated for wet-pet-ui on 2022-10-23T02:35:10-06:00
+
+app = "wet-pet-ui"
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[env]
+API_BASE_URL='https://wet-pet-api.fly.dev'
+AUTH0_BASE_URL='https://wet-pet-ui.fly.dev'
+AUTH0_ISSUER_BASE_URL='https://wet-pet.us.auth0.com'
+AUTH0_CLIENT_ID='wdQ3kd51CFbK5TwkVMrmWNiXyo1zsyw7'
+AUTH0_AUDIENCE='wet-pet-api'
+
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
+
+[[services]]
+  http_checks = []
+  internal_port = 3000
+  processes = ["app"]
+  protocol = "tcp"
+  script_checks = []
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+  [[services.tcp_checks]]
+    grace_period = "1s"
+    interval = "15s"
+    restart_limit = 0
+    timeout = "2s"

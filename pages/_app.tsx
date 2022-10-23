@@ -1,26 +1,35 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { MantineProvider } from '@mantine/core'
+import { ReactElement, ReactNode } from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0';
+import { ColorScheme } from '@mantine/core';
+import { getCookie } from 'cookies-next';
+import { GetServerSidePropsContext, NextPage } from 'next';
+import { AppProps } from 'next/app';
+import { COLOR_THEME_COOKIE_KEY, MantineProvider } from '@providers/MantineProvider';
+import { ReactQueryProvider } from '@providers/ReactQueryProvider';
+import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type Props = AppProps & {
+  Component: NextPageWithLayout;
+  savedColorScheme?: ColorScheme;
+  pageProps: { dehydratedState?: unknown };
+};
+
+export default function App({ Component, pageProps: { dehydratedState, ...pageProps } = {}, savedColorScheme }: Props) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{
-        colorScheme: 'light',
-        breakpoints: {
-          xs: 500,
-          sm: 800,
-          md: 1000,
-          lg: 1200,
-          xl: 1400,
-        },
-      }}
-    >
-      <Component {...pageProps} />
-    </MantineProvider>
-  )
+    <UserProvider>
+      <ReactQueryProvider dehydratedState={dehydratedState}>
+        <MantineProvider savedColorScheme={savedColorScheme}>{getLayout(<Component {...pageProps} />)}</MantineProvider>
+      </ReactQueryProvider>
+    </UserProvider>
+  );
 }
 
-export default MyApp
+App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+  savedColorScheme: getCookie(COLOR_THEME_COOKIE_KEY, ctx) ?? undefined,
+});

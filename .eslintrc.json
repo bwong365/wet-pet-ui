@@ -1,0 +1,59 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["react", "react-hooks", "sort-keys-fix", "sort-destructure-keys", "typescript-sort-keys"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "args": "all", "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
+
+    "import/order": [
+      "error",
+      {
+        "alphabetize": { "order": "asc" },
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index"],
+        "newlines-between": "never",
+        "pathGroups": [{ "group": "builtin", "pattern": "react", "position": "before" }],
+        "pathGroupsExcludedImportTypes": ["react"]
+      }
+    ],
+
+    "object-shorthand": ["error", "always"],
+
+    "react/jsx-sort-props": ["error", { "ignoreCase": true }],
+
+    "react/self-closing-comp": "error",
+
+    "require-await": "error",
+
+    "sort-imports": ["error", { "ignoreCase": true, "ignoreDeclarationSort": true }],
+
+    "sort-keys-fix/sort-keys-fix": ["error", "asc", { "caseSensitive": false, "natural": true }]
+
+    // "@typescript-eslint/no-empty-function": "off",
+    // "import/newline-after-import": "error",
+    // "no-useless-rename": "error",
+    // "no-unused-vars": "off",
+    // "react/jsx-no-useless-fragment": "warn",
+    // "sort-destructure-keys/sort-destructure-keys": [
+    //   "error",
+    //   {
+    //     "caseSensitive": false
+    //   }
+    // ],
+    // "typescript-sort-keys/interface": "error",
+    // "typescript-sort-keys/string-enum": "error",
+    // "@typescript-eslint/explicit-module-boundary-types": "off",
+    // "react/jsx-curly-brace-presence": [
+    //   "error",
+    //   {
+    //     "children": "never",
+    //     "props": "never"
+    //   }
+    // ]
+  }
+}
