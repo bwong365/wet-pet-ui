@@ -23,9 +23,8 @@ export const useDestructiveConfirmationModal = () => {
 
   const onConfirm = useCallback(() => {
     config?.onConfirm();
-    close();
     setConfig(undefined);
-  }, [close, config]);
+  }, [config]);
 
   return { ...config, isOpen, onClose: close, onConfirm, open };
 };

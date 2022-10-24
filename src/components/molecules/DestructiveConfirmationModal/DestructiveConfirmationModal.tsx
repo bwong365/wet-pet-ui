@@ -33,7 +33,14 @@ export const DestructiveConfirmationModal = ({
         </Grid>
         <Box>{message}</Box>
         <Group>
-          <Button onClick={onConfirm}>{confirmButtonText}</Button>
+          <Button
+            onClick={() => {
+              onConfirm?.();
+              onClose();
+            }}
+          >
+            {confirmButtonText}
+          </Button>
           <Button color="red.6" onClick={onClose} p="sm" variant="subtle">
             {cancelButtonText}
           </Button>
