@@ -22,6 +22,8 @@
       }
     ],
 
+    "no-useless-rename": "error",
+
     "object-shorthand": ["error", "always"],
 
     "react/jsx-sort-props": ["error", { "ignoreCase": true }],
@@ -36,7 +38,6 @@
 
     // "@typescript-eslint/no-empty-function": "off",
     // "import/newline-after-import": "error",
-    // "no-useless-rename": "error",
     // "no-unused-vars": "off",
     // "react/jsx-no-useless-fragment": "warn",
     // "sort-destructure-keys/sort-destructure-keys": [

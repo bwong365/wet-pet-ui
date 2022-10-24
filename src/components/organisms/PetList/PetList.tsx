@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { Loading } from '@components/atoms/Loading/Loading';
 import { useFetchAllPets } from '@hooks/useFetchAllPets';
 import { PetSpecies } from '@http/_genClient';
-import { AddPetModal } from '../AddPetModal/AddPetModal';
 
 export const PetList = () => {
   const { pets } = useFetchAllPets();
@@ -16,27 +15,24 @@ export const PetList = () => {
   }
 
   return (
-    <>
-      <AddPetModal />
-      <Stack spacing={0}>
-        {pets.map((pet) => (
-          <Link href={`/pets/${pet.id}`} key={pet.id} passHref>
-            <Box sx={{ display: 'flex' }}>
-              <NavLink
-                active={query.petId === pet.id}
-                component="a"
-                icon={
-                  <Box sx={{ height: '40px', position: 'relative', width: '40px' }}>
-                    <Image alt="" layout="fill" objectFit="contain" priority src={petIconMap[pet.species]} />
-                  </Box>
-                }
-                label={pet.name}
-              />
-            </Box>
-          </Link>
-        ))}
-      </Stack>
-    </>
+    <Stack spacing={0}>
+      {pets.map((pet) => (
+        <Link href={`/pets/${pet.id}`} key={pet.id} passHref>
+          <Box sx={{ display: 'flex' }}>
+            <NavLink
+              active={query.petId === pet.id}
+              component="a"
+              icon={
+                <Box sx={{ height: '40px', position: 'relative', width: '40px' }}>
+                  <Image alt="" layout="fill" objectFit="contain" priority src={petIconMap[pet.species]} />
+                </Box>
+              }
+              label={pet.name}
+            />
+          </Box>
+        </Link>
+      ))}
+    </Stack>
   );
 };
 

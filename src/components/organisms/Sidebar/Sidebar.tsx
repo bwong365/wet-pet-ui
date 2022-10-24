@@ -1,36 +1,62 @@
-import { Divider, Group, Navbar, Title } from '@mantine/core';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Button } from '@components/atoms/Button/Button';
-import { ColorModeSwitch } from '@components/atoms/ColorModeSwitch/ColorModeSwitch';
+import { Box, Divider, Drawer, Navbar, ScrollArea, Stack } from '@mantine/core';
+import { PetLayoutHeader } from '@components/organisms/PetLayoutHeader/PetLayoutHeader';
 import { PetList } from '@components/organisms/PetList/PetList';
+import { AddPetModal } from '../AddPetModal/AddPetModal';
+import { LogoutButton } from '../LogoutButton/LogoutButton';
 
-export const Sidebar = () => {
-  const router = useRouter();
+type Props = {
+  shouldShowDrawer: boolean;
+  isFullSize: boolean;
+  onCloseDrawer: () => void;
+};
+
+export const Sidebar = ({ shouldShowDrawer, isFullSize: showExpanded, onCloseDrawer }: Props) => {
+  if (!showExpanded) {
+    return (
+      <Drawer onClose={onCloseDrawer} opened={shouldShowDrawer}>
+        <Stack
+          spacing={0}
+          sx={{
+            height: 'calc(100% - 44px)',
+          }}
+        >
+          <Box>
+            <AddPetModal />
+            <Divider />
+          </Box>
+
+          <ScrollArea scrollbarSize={5} sx={{ flexGrow: 1 }} type="auto">
+            <PetList />
+          </ScrollArea>
+
+          <Divider />
+          <Box p="xs">
+            <LogoutButton />
+          </Box>
+        </Stack>
+      </Drawer>
+    );
+  }
 
   return (
-    <Navbar width={{ base: 300 }}>
-      <Navbar.Section p="md">
-        <Group sx={{ justifyContent: 'space-between' }}>
-          <Title order={2}>
-            <Link href={'/pets'}>Wet Pet</Link>
-          </Title>
-          <ColorModeSwitch />
-        </Group>
-      </Navbar.Section>
+    <Navbar hiddenBreakpoint="sm" width={{ base: '100%', sm: 300 }}>
+      {showExpanded && (
+        <Navbar.Section p="md">
+          <PetLayoutHeader showSidebarToggle={false} />
+        </Navbar.Section>
+      )}
 
       <Divider />
+      <AddPetModal />
 
-      <Navbar.Section grow>
+      <Navbar.Section component={ScrollArea} grow scrollbarSize={5} type="auto">
         <PetList />
       </Navbar.Section>
 
       <Divider />
 
       <Navbar.Section p="xs">
-        <Button color="gray" fullWidth onClick={() => router.push('/api/auth/logout')}>
-          Log out
-        </Button>
+        <LogoutButton />
       </Navbar.Section>
     </Navbar>
   );
