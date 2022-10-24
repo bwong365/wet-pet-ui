@@ -4,15 +4,15 @@ import Link from 'next/link';
 import { ColorModeSwitch } from '@components/atoms/ColorModeSwitch/ColorModeSwitch';
 
 type Props = {
-  toggleSidebar?: () => void | undefined;
+  openSidebar?: () => void | undefined;
   showSidebarToggle: boolean;
 };
 
-export const PetLayoutHeader = ({ toggleSidebar, showSidebarToggle }: Props) => {
+export const PetLayoutHeader = ({ openSidebar, showSidebarToggle }: Props) => {
   return (
     <Group px={showSidebarToggle ? 'sm' : undefined} sx={{ justifyContent: 'space-between', width: '100%' }}>
       {showSidebarToggle && (
-        <ActionIcon onClick={toggleSidebar}>
+        <ActionIcon onClick={openSidebar}>
           <IconMenu2 />
         </ActionIcon>
       )}

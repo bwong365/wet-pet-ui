@@ -13,7 +13,7 @@ export const PetLayout = ({ children }: Props) => {
   const theme = useMantineTheme();
   const isFullSize = useMediaQuery(`(min-width: ${theme.breakpoints.sm}px)`, false);
 
-  const [opened, { toggle, close }] = useDisclosure(false);
+  const [opened, { open, close }] = useDisclosure(false);
   useEffect(() => {
     Router.events.on('routeChangeComplete', close);
     return () => {
@@ -26,7 +26,7 @@ export const PetLayout = ({ children }: Props) => {
       header={
         !isFullSize ? (
           <Header height={50} sx={{ display: 'flex' }} withBorder>
-            <PetLayoutHeader showSidebarToggle toggleSidebar={toggle} />
+            <PetLayoutHeader openSidebar={open} showSidebarToggle />
           </Header>
         ) : undefined
       }
