@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { Box } from '@mantine/core';
+import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 import { Button } from '@components/atoms/Button/Button';
 import { DestructiveConfirmationModal } from '@components/molecules/DestructiveConfirmationModal/DestructiveConfirmationModal';
@@ -18,7 +19,16 @@ export const DeletePetModal = ({ id, name }: Props) => {
   const openDeleteModal = useCallback(() => {
     openDelete({
       message: `Are you sure you want to release ${name}?`,
-      onConfirm: () => deletePet(id, { onSuccess: () => router.push('/pets') }),
+      onConfirm: () =>
+        deletePet(id, {
+          onSuccess: () => {
+            showNotification({
+              message: `${name} was released.`,
+              title: `👋 Bye ${name}!`,
+            });
+            router.push('/pets');
+          },
+        }),
       title: `Release ${name}?`,
     });
   }, [deletePet, id, name, openDelete, router]);

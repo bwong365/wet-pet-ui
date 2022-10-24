@@ -1,6 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { MantineProvider as BaseMantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { useColorScheme } from '@mantine/hooks';
+import { NotificationsProvider } from '@mantine/notifications';
 import { setCookie } from 'cookies-next';
 
 type Props = {
@@ -20,7 +21,7 @@ export const MantineProvider = ({ children, savedColorScheme }: Props) => {
         withGlobalStyles
         withNormalizeCSS
       >
-        {children}
+        <NotificationsProvider position="top-right">{children}</NotificationsProvider>
       </BaseMantineProvider>
     </ColorSchemeProvider>
   );
