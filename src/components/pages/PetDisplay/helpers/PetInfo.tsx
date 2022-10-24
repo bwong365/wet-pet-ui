@@ -3,7 +3,7 @@ import { Box, Group, Text, Title } from '@mantine/core';
 import { UpdatePetModal } from '@components/organisms/UpdatePetModal/UpdatePetModal';
 import { IPetReportResponse } from '@http/apiClient';
 import { getPetSpeciesText } from '@utils/getPetSpeciesText';
-import { getPetStatusText } from '@utils/getPetStatusText';
+import { getPetStatusText } from '@utils/getPetStatusText/getPetStatusText';
 
 type Props = {
   pet: IPetReportResponse;
