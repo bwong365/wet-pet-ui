@@ -9,6 +9,7 @@
     "build-storybook": "build-storybook",
     "tsc": "tsc --pretty --noEmit",
     "check": "tsc --pretty --noEmit && next lint",
+    "inspect": "next build && NODE_OPTIONS='--inspect' next start",
     "prepare": "husky install"
   },
   "lint-staged": {
