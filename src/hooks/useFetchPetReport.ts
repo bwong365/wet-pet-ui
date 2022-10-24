@@ -1,7 +1,7 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { apiClient, createPrefetchClient } from '@http/apiClient';
 import { adaptResponseForPrefetch } from '@utils/adaptResponseForPrefetch';
-import { PrefetchParams } from './PrefetchParams';
+import { PrefetchParams } from '../types/prefetchParams';
 
 type Params = {
   petId?: string;

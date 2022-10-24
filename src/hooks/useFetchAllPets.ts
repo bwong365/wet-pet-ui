@@ -1,7 +1,7 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { apiClient, createPrefetchClient } from '@http/apiClient';
 import { adaptResponseForPrefetch } from '@utils/adaptResponseForPrefetch';
-import { PrefetchParams } from './PrefetchParams';
+import { PrefetchParams } from '../types/prefetchParams';
 
 export const useFetchAllPets = () => {
   const { data } = useQuery(['pets'], () => apiClient.getPets(), {

@@ -17,10 +17,11 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
-      "@http/*": ["src/http/*"],
       "@hooks/*": ["src/hooks/*"],
+      "@http/*": ["src/http/*"],
       "@layouts/*": ["src/layouts/*"],
       "@providers/*": ["src/providers/*"],
+      "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
