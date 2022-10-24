@@ -1,4 +1,4 @@
-import { ActionIcon, Group, Title } from '@mantine/core';
+import { ActionIcon, Grid, Title } from '@mantine/core';
 import { IconMenu2 } from '@tabler/icons';
 import Link from 'next/link';
 import { ColorModeSwitch } from '@components/atoms/ColorModeSwitch/ColorModeSwitch';
@@ -10,18 +10,29 @@ type Props = {
 
 export const PetLayoutHeader = ({ openSidebar, showSidebarToggle }: Props) => {
   return (
-    <Group px={showSidebarToggle ? 'sm' : undefined} sx={{ justifyContent: 'space-between', width: '100%' }}>
+    <Grid
+      columns={showSidebarToggle ? 3 : 2}
+      mx={0}
+      px={showSidebarToggle ? 'sm' : 0}
+      sx={{ alignItems: 'center', width: '100%' }}
+    >
       {showSidebarToggle && (
-        <ActionIcon onClick={openSidebar}>
-          <IconMenu2 />
-        </ActionIcon>
+        <Grid.Col span={1}>
+          <ActionIcon onClick={openSidebar}>
+            <IconMenu2 />
+          </ActionIcon>
+        </Grid.Col>
       )}
 
-      <Title order={2}>
-        <Link href={'/pets'}>Wet Pet</Link>
-      </Title>
+      <Grid.Col span={1} sx={showSidebarToggle ? { display: 'flex', justifyContent: 'center' } : undefined}>
+        <Title order={2}>
+          <Link href={'/pets'}>Wet Pet</Link>
+        </Title>
+      </Grid.Col>
 
-      <ColorModeSwitch />
-    </Group>
+      <Grid.Col span={1} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <ColorModeSwitch />
+      </Grid.Col>
+    </Grid>
   );
 };
