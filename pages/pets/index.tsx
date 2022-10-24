@@ -23,6 +23,7 @@ const Pets = () => {
         Welcome!
       </Title>
       <Text>Wet Pet helps you monitor the environment and relative comfort of your pets.</Text>
+      <Text> Different species will have different preferences in climate; feel free to play around with it!</Text>
       <Text mt="sm" size="sm">
         *Powered by the
         <Text span variant="link">
