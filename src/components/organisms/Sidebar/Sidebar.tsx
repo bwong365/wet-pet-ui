@@ -1,4 +1,5 @@
 import { Box, Divider, Drawer, Navbar, ScrollArea, Stack } from '@mantine/core';
+import { useIntersection } from '@mantine/hooks';
 import { PetLayoutHeader } from '@components/organisms/PetLayoutHeader/PetLayoutHeader';
 import { PetList } from '@components/organisms/PetList/PetList';
 import { AddPetModal } from '../AddPetModal/AddPetModal';
@@ -11,13 +12,17 @@ type Props = {
 };
 
 export const Sidebar = ({ shouldShowDrawer, isFullSize: showExpanded, onCloseDrawer }: Props) => {
+  const { entry, ref } = useIntersection();
+  const stackOffsetFromDrawerTop = entry?.boundingClientRect.top;
+
   if (!showExpanded) {
     return (
       <Drawer onClose={onCloseDrawer} opened={shouldShowDrawer}>
         <Stack
+          ref={ref}
           spacing={0}
           sx={{
-            height: 'calc(100% - 44px)',
+            height: `calc(100% - ${stackOffsetFromDrawerTop}px)`,
           }}
         >
           <Box>
