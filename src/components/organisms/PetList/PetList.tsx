@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { Loading } from '@components/atoms/Loading/Loading';
 import { useFetchAllPets } from '@hooks/useFetchAllPets';
 import { PetSpecies } from '@http/_genClient';
+import { getPetSpeciesText } from '@utils/getPetSpeciesText';
 
 export const PetList = () => {
   const { pets } = useFetchAllPets();
@@ -23,9 +24,14 @@ export const PetList = () => {
               active={query.petId === pet.id}
               component="a"
               icon={
-                <Box sx={{ height: '40px', position: 'relative', width: '40px' }}>
-                  <Image alt="" layout="fill" objectFit="contain" priority src={petIconMap[pet.species]} />
-                </Box>
+                <Image
+                  alt={`A ${getPetSpeciesText(pet.species)}`}
+                  height={40}
+                  objectFit="contain"
+                  priority
+                  src={petIconMap[pet.species]}
+                  width={40}
+                />
               }
               label={pet.name}
             />
